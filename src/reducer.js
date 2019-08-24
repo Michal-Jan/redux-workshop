@@ -1,4 +1,9 @@
-import { createStore, compose, applyMiddleware } from "redux"
+import { 
+    createStore, 
+    compose, 
+    applyMiddleware, 
+    combineReducers 
+} from "redux"
 import ReduxThunk from 'redux-thunk'
 import { 
     SET_GAME_STARTED, 
@@ -12,7 +17,15 @@ const defaultState = {
     gameStarted: false
   }
 
-const reducer = (state = defaultState, action) => {
+const gameState = {
+    questions: [],
+    currentQuestion: {},
+    answers: [],
+    currentQuestionNumber: 0,
+    answer: {}
+}
+
+const mainReducer = (state = defaultState, action) => {
     const { type, payload } = action
 
     switch (type) {
@@ -36,8 +49,20 @@ const reducer = (state = defaultState, action) => {
     }
 }
 
+const gameReducer = (state = gameState, action) => {
+    const { type, payload } = action
+
+    switch (type) {
+        default:
+            return state
+    }
+}
+
 const store = createStore(
-    reducer,
+    combineReducers({
+        mainReducer,
+        gameReducer,
+    }),
     compose(
         applyMiddleware(ReduxThunk),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

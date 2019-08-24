@@ -120,7 +120,7 @@ Setup.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  gameStarted: state.gameStarted
+  gameStarted: state.mainReducer.gameStarted
 })
 
 export default connect(mapStateToProps, { setupApp })(Setup)

@@ -181,7 +181,7 @@ Game.propTypes = {
 
 
 const mapStateToProps = state => ({
-  appSettings: state
+  appSettings: state.mainReducer
 })
 
 export default connect(mapStateToProps, { resetGame })(Game)
