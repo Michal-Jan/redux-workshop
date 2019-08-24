@@ -9,20 +9,8 @@ import Home from './Home'
 import Setup from './Setup'
 import Game from './Game'
 
-const defaultState = {
-  nick: '',
-  difficulty: null,
-  gameStarted: false
-}
-
 class App extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.state = defaultState
-
-  }
-
+  
   render () {
     return (
       <BrowserRouter>

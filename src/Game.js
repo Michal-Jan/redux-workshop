@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  fetchQuestions
-} from './helpers'
 import Questions from './Questions'
 import Background from './Background'
 import SidePanel from './SidePanel'
@@ -56,12 +53,6 @@ class Game extends Component {
 
   fetchQuestions () {
     this.props.getQuestions(this.props.appSettings.difficulty)
-    // fetchQuestions(this.props.appSettings.difficulty)
-    //   .then(questions => {
-    //     this.setState({
-    //       questions
-    //     }, this.generateQuestion)
-    //   })
   }
 
   generateQuestion () {
@@ -132,15 +123,24 @@ class Game extends Component {
 
   render () {
     const {
-      currentQuestion: {
-        question,
-        correctAnswer
-      },
-      answers,
       isGameFinished,
       hasWon,
-      currentQuestionNumber
     } = this.state
+
+    const {
+      questions,
+      currentQuestionNumber,
+    } = this.props
+
+    if (!questions.length) {
+      return null
+    }
+
+    const {
+      question,
+      correctAnswer,
+      answers,
+    } = questions[currentQuestionNumber]
 
     return isGameFinished
       ? (
@@ -176,13 +176,14 @@ class Game extends Component {
 Game.propTypes = {
   appSettings: PropTypes.object,
   history: PropTypes.object,
-  resetGame: PropTypes.func
+  resetGame: PropTypes.func,
+  questions: PropTypes.array,
 }
 
-
-
 const mapStateToProps = state => ({
-  appSettings: state.mainReducer
+  appSettings: state.mainReducer,
+  questions: state.gameReducer.questions,
+  currentQuestionNumber: state.gameReducer.currentQuestionNumber
 })
 
 export default connect(mapStateToProps, { resetGame, getQuestions })(Game)
