@@ -25,10 +25,4 @@ Home.propTypes = {
   setGameStarted: PropTypes.func
 }
 
-const mapDispatchToProps = dispatch => ({
-  setGameStarted: () => {
-    dispatch(setGameStarted())
-  }
-})
-
-export default connect(null, mapDispatchToProps)(Home)
+export default connect(null, { setGameStarted })(Home)

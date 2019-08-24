@@ -123,10 +123,4 @@ const mapStateToProps = state => ({
   gameStarted: state.gameStarted
 })
 
-const mapDispatchToProps = dispatch => ({
-  setupApp: (nick, difficulty) => {
-    dispatch(setupApp(nick, difficulty))
-  }
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Setup)
+export default connect(mapStateToProps, { setupApp })(Setup)

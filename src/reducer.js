@@ -1,4 +1,5 @@
-import { createStore, compose } from "redux"
+import { createStore, compose, applyMiddleware } from "redux"
+import ReduxThunk from 'redux-thunk'
 import { 
     SET_GAME_STARTED, 
     SETUP_APP,
@@ -35,23 +36,36 @@ const reducer = (state = defaultState, action) => {
     }
 }
 
+export const setGameStarted = () => dispatch => {
+    dispatch(setGameStartedAction())
+}
+
+export const setupApp = (nick, difficulty) => dispatch => {
+    dispatch(setupAppAction(nick, difficulty))
+}
+
+export const resetGame = () => dispatch => {
+    dispatch(resetGameAction())
+}
+
 // action creator
-export const setGameStarted = () => ({
+export const setGameStartedAction = () => ({
     type: SET_GAME_STARTED
 })
 
-export const setupApp = (nick, difficulty) => ({
+export const setupAppAction = (nick, difficulty) => ({
     type: SETUP_APP,
     payload: { nick, difficulty }
 })
 
-export const resetGame = () => ({
+export const resetGameAction = () => ({
     type: RESET_GAME
 })
 
 const store = createStore(
     reducer,
     compose(
+        applyMiddleware(ReduxThunk),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 )

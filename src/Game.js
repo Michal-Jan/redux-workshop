@@ -178,14 +178,10 @@ Game.propTypes = {
   resetGame: PropTypes.func
 }
 
-const mapDispatchToProps = dispatch => ({
-  resetGame: () => {
-    dispatch(resetGame())
-  }
-})
+
 
 const mapStateToProps = state => ({
   appSettings: state
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game)
+export default connect(mapStateToProps, { resetGame })(Game)
