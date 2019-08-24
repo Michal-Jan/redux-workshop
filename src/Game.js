@@ -8,6 +8,9 @@ import Background from './Background'
 import SidePanel from './SidePanel'
 import { shuffle } from 'lodash'
 import EndScreen from './EndScreen'
+import { connect } from 'react-redux' 
+import { resetGame } from './reducer'
+
 
 class Game extends Component {
   constructor (props) {
@@ -46,10 +49,9 @@ class Game extends Component {
     this.fetchQuestions()
   }
 
-  resetGame () {
-    this.props.resetGame(() => {
-      this.props.history.push('/')
-    })
+  async resetGame () {
+    await this.props.resetGame()
+    this.props.history.push('/')
   }
 
   fetchQuestions () {
@@ -176,4 +178,14 @@ Game.propTypes = {
   resetGame: PropTypes.func
 }
 
-export default Game
+const mapDispatchToProps = dispatch => ({
+  resetGame: () => {
+    dispatch(resetGame())
+  }
+})
+
+const mapStateToProps = state => ({
+  appSettings: state
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game)

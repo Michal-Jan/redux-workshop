@@ -21,21 +21,6 @@ class App extends React.Component {
 
     this.state = defaultState
 
-    this.resetGame = this.resetGame.bind(this)
-    this.setupApp = this.setupApp.bind(this)
-  }
-
-  setupApp (nick, difficulty, callback) {
-    this.setState({
-      nick,
-      difficulty
-    }, callback)
-  }
-
- 
-
-  resetGame (callback) {
-    this.setState({ ...defaultState }, callback)
   }
 
   render () {
@@ -54,13 +39,7 @@ class App extends React.Component {
           />
           <Route
             exact path='/game'
-            component={({ history }) =>
-              <Game
-                history={history}
-                appSettings={this.state}
-                resetGame={this.resetGame}
-              />
-            }
+            component={Game}
           />
         </Switch>
       </BrowserRouter>

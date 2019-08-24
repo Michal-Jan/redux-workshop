@@ -2,6 +2,7 @@ import { createStore, compose } from "redux"
 import { 
     SET_GAME_STARTED, 
     SETUP_APP,
+    RESET_GAME,
 } from './actionTypes'
 
 const defaultState = {
@@ -25,6 +26,10 @@ const reducer = (state = defaultState, action) => {
                 nick: payload.nick,
                 difficulty: payload.difficulty,
             }
+        case RESET_GAME:
+            return {
+                ...defaultState
+            }
         default:
             return state
     }
@@ -38,6 +43,10 @@ export const setGameStarted = () => ({
 export const setupApp = (nick, difficulty) => ({
     type: SETUP_APP,
     payload: { nick, difficulty }
+})
+
+export const resetGame = () => ({
+    type: RESET_GAME
 })
 
 const store = createStore(
