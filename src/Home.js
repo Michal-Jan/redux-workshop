@@ -4,7 +4,7 @@ import {
   Link
 } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { setGameStarted } from './reducer'
+import { setGameStarted } from './actions'
 
 const Home = props => {
   return (

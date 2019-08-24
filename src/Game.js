@@ -9,7 +9,7 @@ import SidePanel from './SidePanel'
 import { shuffle } from 'lodash'
 import EndScreen from './EndScreen'
 import { connect } from 'react-redux' 
-import { resetGame } from './reducer'
+import { resetGame } from './actions'
 
 
 class Game extends Component {

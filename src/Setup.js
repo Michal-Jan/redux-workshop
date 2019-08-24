@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux' 
-import { setupApp } from './reducer'
+import { setupApp } from './actions'
 
 class Setup extends Component {
   constructor (props) {
