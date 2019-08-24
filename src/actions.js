@@ -3,6 +3,8 @@ import {
     SETUP_APP,
     RESET_GAME,
     GET_QUESTIONS,
+    SET_GOOD_ANSWER,
+    SET_BAD_ANSWER,
 } from './actionTypes'
 import { fetchQuestions } from './helpers'
 import { shuffle } from 'lodash'
@@ -54,4 +56,20 @@ export const getQuestions = difficulty => async dispatch => {
 export const getQuestionsAction = questions => ({
     type: GET_QUESTIONS,
     payload: questions
+})
+
+export const setGoodAnswer = () => dispatch => {
+    dispatch(setGoodAnswerAction())
+}
+
+export const setBadAnswer = () => dispatch => {
+    dispatch(setBadAnswerAction())
+}
+
+const setGoodAnswerAction = () => ({
+    type: SET_GOOD_ANSWER
+})
+
+const setBadAnswerAction = () => ({
+    type: SET_BAD_ANSWER
 })
