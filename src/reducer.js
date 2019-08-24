@@ -9,6 +9,7 @@ import {
     SET_GAME_STARTED, 
     SETUP_APP,
     RESET_GAME,
+    GET_QUESTIONS,
 } from './actionTypes'
 
 const defaultState = {
@@ -53,6 +54,11 @@ const gameReducer = (state = gameState, action) => {
     const { type, payload } = action
 
     switch (type) {
+        case GET_QUESTIONS:
+            return {
+                ...state,
+                questions: payload
+            }
         default:
             return state
     }

@@ -9,7 +9,7 @@ import SidePanel from './SidePanel'
 import { shuffle } from 'lodash'
 import EndScreen from './EndScreen'
 import { connect } from 'react-redux' 
-import { resetGame } from './actions'
+import { resetGame, getQuestions } from './actions'
 
 
 class Game extends Component {
@@ -55,12 +55,13 @@ class Game extends Component {
   }
 
   fetchQuestions () {
-    fetchQuestions(this.props.appSettings.difficulty)
-      .then(questions => {
-        this.setState({
-          questions
-        }, this.generateQuestion)
-      })
+    this.props.getQuestions(this.props.appSettings.difficulty)
+    // fetchQuestions(this.props.appSettings.difficulty)
+    //   .then(questions => {
+    //     this.setState({
+    //       questions
+    //     }, this.generateQuestion)
+    //   })
   }
 
   generateQuestion () {
@@ -184,4 +185,4 @@ const mapStateToProps = state => ({
   appSettings: state.mainReducer
 })
 
-export default connect(mapStateToProps, { resetGame })(Game)
+export default connect(mapStateToProps, { resetGame, getQuestions })(Game)
